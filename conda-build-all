@@ -18,6 +18,8 @@ CDT_BASE=${PROG_DIR##*/}
 ordered_cdts=(
     libcap-ng
     libcap-ng-devel
+    libeconf
+    libeconf-devel
 
     audit-libs
     audit-libs-devel
