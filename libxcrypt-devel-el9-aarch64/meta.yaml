@@ -37,6 +37,7 @@ about:
   license: LGPL-2.1-or-later  # LGPLv2+ and BSD and Public Domain
   license_family: LGPL
   license_file:
+    - AUTHORS
     - LICENSING
     - COPYING.LIB
   summary: (CDT) Development files for libxcrypt
