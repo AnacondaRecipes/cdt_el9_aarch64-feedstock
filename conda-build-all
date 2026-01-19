@@ -1,0 +1,76 @@
+#! /bin/bash
+
+# For standalone testing, you may want to:
+
+# conda build linux-sysroot-feedstock
+
+# then tar up that conda-bld directory in order that you can
+# repeatedly delete it and re-untar the sysroot back in (as it takes
+# some time).
+
+set -euo pipefail
+
+PROG_DIR=${0%/*}
+CDT_BASE=${PROG_DIR##*/}
+
+# Build the CDTs "in order"
+
+ordered_cdts=(
+    libcap-ng
+    libcap-ng-devel
+
+    audit-libs
+    audit-libs-devel
+
+    cracklib
+    cracklib-devel
+    cracklib-dicts
+
+    copy-jdk-configs
+    javapackages-filesystem
+    java-1.8.0-openjdk
+    java-1.8.0-openjdk-devel
+
+    libxcrypt
+    libxcrypt-devel
+
+    kmod-libs
+    kmod
+    kmod-devel
+
+    libpwquality
+    libpwquality-devel
+
+    libsepol
+    libsepol-devel
+    libselinux
+    libselinux-devel
+
+    libtirpc
+    libtirpc-devel
+
+    pam
+    pam-devel
+)
+
+cb_base_args=(
+    conda build
+    --error-overlinking
+    --error-overdepending
+    "$@"
+)
+
+for cdt in ${ordered_cdts[*]} ; do
+    cat <<EOF
+
+##############################
+#
+# ${cdt}-el9-aarch64
+# ${cb_base_args[@]} ${CDT_BASE}/${cdt}-el9-aarch64
+
+EOF
+
+    "${cb_base_args[@]}" ${CDT_BASE}/${cdt}-el9-aarch64
+done
+
+echo +${SECONDS}s: done
