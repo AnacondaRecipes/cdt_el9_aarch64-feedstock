@@ -1,0 +1,74 @@
+package:
+  name: libxcrypt-el9-aarch64
+  version: 4.4.18
+
+source:
+  - url: https://download.rockylinux.org/vault/rocky/9.5/BaseOS/aarch64/os/Packages/l/libxcrypt-4.4.18-3.el9.aarch64.rpm
+    sha256: ec12e0266ce1f96af43495c95f95fbb6d972af576f19473ea231985f8cd4d2d6
+    no_hoist: true
+    folder: binary
+
+build:
+  skip: True  # [not (linux and aarch64)]
+  number: {{ build_number }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - sysroot_linux-aarch64 2.34.*
+  host:
+  run:
+    - sysroot_linux-aarch64 2.34.*
+
+test:
+  commands:
+    - test -f ${PREFIX}/aarch64-conda_el9-linux-gnu/sysroot/usr/lib64/fipscheck/libcrypt.so.2.0.0.hmac
+    - test -f ${PREFIX}/aarch64-conda_el9-linux-gnu/sysroot/usr/lib64/fipscheck/libcrypt.so.2.0.0.hmac
+
+about:
+  home: https://github.com/besser82/libxcrypt
+  # LICENSING says LGPL-2.1-or-later, COPYING.LIB is that license
+  license: LGPL-2.1-or-later  # LGPLv2+ and BSD and Public Domain
+  license_family: LGPL
+  license_file:
+    - LICENSING
+    - COPYING.LIB
+  summary: (CDT) Extended crypt library for DES, MD5, Blowfish and others
+  description: |
+    libxcrypt is a modern library for one-way hashing of passwords.  It
+    supports DES, MD5, SHA-2-256, SHA-2-512, and bcrypt-based password
+    hashes, and provides the traditional Unix 'crypt' and 'crypt_r'
+    interfaces, as well as a set of extended interfaces pioneered by
+    Openwall Linux, 'crypt_rn', 'crypt_ra', 'crypt_gensalt',
+    'crypt_gensalt_rn', and 'crypt_gensalt_ra'.
+
+    libxcrypt is intended to be used by login(1), passwd(1), and other
+    similar programs; that is, to hash a small number of passwords during
+    an interactive authentication dialogue with a human.  It is not
+    suitable for use in bulk password-cracking applications, or in any
+    other situation where speed is more important than careful handling of
+    sensitive data.  However, it *is* intended to be fast and lightweight
+    enough for use in servers that must field thousands of login attempts
+    per minute.
+
+    On Linux-based systems, by default libxcrypt will be binary backward
+    compatible with the libcrypt.so.1 shipped as part of the GNU C Library.
+    This means that all existing binary executables linked against glibc's
+    libcrypt should work unmodified with this library's libcrypt.so.1.  We
+    have taken pains to provide exactly the same "symbol versions" as were
+    used by glibc on various CPU architectures, and to account for the
+    variety of ways in which the Openwall extensions were patched into
+    glibc's libcrypt by some Linux distributions.  (For instance,
+    compatibility symlinks for SuSE's "libowcrypt" are provided.)
+
+    However, the converse is not true: programs linked against libxcrypt
+    will not work with glibc's libcrypt.  Also, programs that use certain
+    legacy APIs supplied by glibc's libcrypt ('encrypt', 'encrypt_r',
+    'setkey', 'setkey_r', and 'fcrypt') cannot be compiled against libxcrypt.
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

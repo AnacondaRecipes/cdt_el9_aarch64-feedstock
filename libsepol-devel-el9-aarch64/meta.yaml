@@ -1,0 +1,45 @@
+package:
+  name: libsepol-devel-el9-aarch64
+  version: 3.6
+
+source:
+  - url: https://download.rockylinux.org/vault/rocky/9.5/AppStream/aarch64/os/Packages/l/libsepol-devel-3.6-1.el9.aarch64.rpm
+    sha256: d13bc5b98ae55f91574be0d4396e5954d58bde69ca2272172df5e1f0920a7551
+    no_hoist: true
+    folder: binary
+
+build:
+  skip: True  # [not (linux and aarch64)]
+  number: {{ build_number }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+
+requirements:
+  host:
+  run:
+    - sysroot_linux-aarch64 2.34.*
+    - libsepol-el9-aarch64 ==3.6 *_{{ build_number }}
+
+test:
+  requires:
+    - pkg-config
+  commands:
+    - test -f ${PREFIX}/aarch64-conda_el9-linux-gnu/sysroot/usr/include/sepol/sepol.h
+    - test -f ${PREFIX}/aarch64-conda_el9-linux-gnu/sysroot/usr/lib64/libsepol.so
+    - export PKG_CONFIG_PATH=${PREFIX}/aarch64-conda_el9-linux-gnu/sysroot/usr/lib64/pkgconfig
+    - pkg-config --cflags libsepol
+
+about:
+  home: https://github.com/SELinuxProject/selinux/wiki
+  license: LGPL-2.1-only  # LGPLv2+
+  license_family: LGPL
+  license_file:
+    - COPYING
+  summary: (CDT) Header files and libraries used to build policy manipulation tools
+  description: |
+    The libsepol-devel package contains the libraries and header files needed for
+    developing applications that manipulate binary policies.
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

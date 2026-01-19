@@ -1,0 +1,53 @@
+package:
+  name: libsepol-el9-aarch64
+  version: 3.6
+
+source:
+  - url: https://download.rockylinux.org/vault/rocky/9.5/BaseOS/aarch64/os/Packages/l/libsepol-3.6-1.el9.aarch64.rpm
+    sha256: ec1097b26e8134ab0b7bbe641525b5574720b4e8ffa8156a6f6111b470125c0d
+    no_hoist: true
+    folder: binary
+
+build:
+  skip: True  # [not (linux and aarch64)]
+  number: {{ build_number }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - sysroot_linux-aarch64 2.34.*
+  host:
+  run:
+    - sysroot_linux-aarch64 2.34.*
+
+test:
+  commands:
+    - test -f ${PREFIX}/aarch64-conda_el9-linux-gnu/sysroot/usr/lib64/libsepol.so.2
+
+about:
+  home: https://github.com/SELinuxProject/selinux/wiki
+  license: LGPL-2.1-only  # LGPLv2+
+  license_family: LGPL
+  license_file:
+    - COPYING
+  summary: (CDT) SELinux binary policy manipulation library
+  description: |
+    Security-enhanced Linux is a feature of the Linux® kernel and a number of
+    utilities with enhanced security functionality designed to add mandatory
+    access controls to Linux.  The Security-enhanced Linux kernel contains new
+    architectural components originally developed to improve the security of the
+    Flask operating system. These architectural components provide general support
+    for the enforcement of many kinds of mandatory access control policies,
+    including those based on the concepts of Type Enforcement®, Role-based Access
+    Control, and Multi-level Security.  libsepol provides an API for the
+    manipulation of SELinux binary policies. It is used by checkpolicy (the policy
+    compiler) and similar tools, as well as by programs like load_policy that need
+    to perform specific transformations on binary policies such as customizing
+    policy boolean settings.
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

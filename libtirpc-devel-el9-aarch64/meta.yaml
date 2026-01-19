@@ -1,0 +1,45 @@
+package:
+  name: libtirpc-devel-el9-aarch64
+  version: 1.3.3
+
+source:
+  - url: https://download.rockylinux.org/vault/rocky/9.5/devel/aarch64/os/Packages/l/libtirpc-devel-1.3.3-9.el9.aarch64.rpm
+    sha256: b4363b5bae970e0f2502036bdb72cce15f9d40905577ba929432d8bf4c5efe8d
+    no_hoist: true
+    folder: binary
+
+build:
+  skip: True  # [not (linux and aarch64)]
+  number: {{ build_number }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+
+requirements:
+  host:
+  run:
+    - sysroot_linux-aarch64 2.34.*
+    - libtirpc-el9-aarch64 ==1.3.3 *_{{ build_number }}
+
+test:
+  requires:
+    - pkg-config
+  commands:
+    - test -f ${PREFIX}/aarch64-conda_el9-linux-gnu/sysroot/usr/include/tirpc/netconfig.h
+    - test -f ${PREFIX}/aarch64-conda_el9-linux-gnu/sysroot/lib64/libtirpc.so
+    - export PKG_CONFIG_PATH=${PREFIX}/aarch64-conda_el9-linux-gnu/sysroot/usr/lib64/pkgconfig
+    - pkg-config --cflags libtirpc
+
+about:
+  home: http://git.linux-nfs.org/?p=steved/libtirpc.git;a=summary
+  license: BSD-3-Clause  # SISSL and BSD
+  license_family: BSD
+  license_file:
+    - COPYING
+  summary: (CDT) Development files for the libtirpc library
+  description: |
+    This package includes header files and libraries necessary for
+    developing programs which use the tirpc library.
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

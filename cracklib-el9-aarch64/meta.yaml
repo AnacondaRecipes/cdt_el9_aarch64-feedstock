@@ -1,0 +1,55 @@
+package:
+  name: cracklib-el9-aarch64
+  version: 2.9.6
+
+source:
+  - url: https://download.rockylinux.org/vault/rocky/9.5/BaseOS/aarch64/os/Packages/c/cracklib-2.9.6-27.el9.aarch64.rpm
+    sha256: 6fc09c48f1aeab91a14ec82167b60c7252412d6c2776f66007968c359831162c
+    no_hoist: true
+    folder: binary
+
+build:
+  skip: True  # [not (linux and aarch64)]
+  number: {{ build_number }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - sysroot_linux-aarch64 2.34.*
+  host:
+  run:
+    - sysroot_linux-aarch64 2.34.*
+    - zlib
+
+test:
+  commands:
+    - test -f ${PREFIX}/aarch64-conda_el9-linux-gnu/sysroot/usr/lib64/libcrack.so.2
+    - test -f ${PREFIX}/aarch64-conda_el9-linux-gnu/sysroot/usr/lib64/libcrack.so.2.9.0
+
+about:
+  home: http://sourceforge.net/projects/cracklib/
+  license: LGPL-2.1-only  # LGPLv2+
+  license_family: LGPL
+  license_file:
+    - COPYING.LIB
+  summary: (CDT) A password-checking library
+  description: |
+    CrackLib tests passwords to determine whether they match certain security-
+    oriented characteristics, with the purpose of stopping users from choosing
+    passwords that are easy to guess. CrackLib performs several tests on
+    passwords: it tries to generate words from a username and gecos entry and
+    checks those words against the password; it checks for simplistic patterns in
+    passwords; and it checks for the password in a dictionary.  CrackLib is
+    actually a library containing a particular C function which is used to check
+    the password, as well as other C functions. CrackLib is not a replacement for
+    a passwd program; it must be used in conjunction with an existing passwd
+    program.  Install the cracklib package if you need a program to check users'
+    passwords to see if they are at least minimally secure. If you install
+    CrackLib, you will also want to install the cracklib-dicts package.
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

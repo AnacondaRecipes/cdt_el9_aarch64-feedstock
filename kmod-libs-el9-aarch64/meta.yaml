@@ -1,0 +1,49 @@
+package:
+  name: kmod-libs-el9-aarch64
+  version: 28
+
+source:
+  - url: https://download.rockylinux.org/vault/rocky/9.5/BaseOS/aarch64/os/Packages/k/kmod-libs-28-10.el9.aarch64.rpm
+    sha256: 94c0827ad75a805a4a0eba3ba33495150b8cdf475e49a3845bbb538b55a6d707
+    no_hoist: true
+    folder: binary
+
+build:
+  skip: True  # [not (linux and aarch64)]
+  number: {{ build_number }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - sysroot_linux-aarch64 2.34.*
+  host:
+  run:
+    - sysroot_linux-aarch64 2.34.*
+    - libgcc-ng
+    - libxcrypt-el9-aarch64 >=4.4.18 *_{{ build_number }}
+    - openssl 1  # libcrypto.so.1.1
+    - xz
+    - zlib
+
+test:
+  commands:
+    - test -f ${PREFIX}/aarch64-conda_el9-linux-gnu/sysroot/usr/lib64/libkmod.so.2
+    - test -f ${PREFIX}/aarch64-conda_el9-linux-gnu/sysroot/usr/lib64/libkmod.so.2.3.6
+
+about:
+  home: http://git.kernel.org/?p=utils/kernel/kmod/kmod.git;a=summary
+  license: LGPL-2.1-only  # LGPLv2+
+  license_family: LGPL
+  license_file:
+    - COPYING
+  summary: (CDT) Libraries to handle kernel module loading and unloading
+  description: |
+    The kmod-libs package provides runtime libraries for any application that
+    wishes to load or unload Linux kernel modules from the running system.
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

@@ -1,0 +1,46 @@
+package:
+  name: libselinux-devel-el9-aarch64
+  version: 3.6
+
+source:
+  - url: https://download.rockylinux.org/vault/rocky/9.5/AppStream/aarch64/os/Packages/l/libselinux-devel-3.6-1.el9.aarch64.rpm
+    sha256: 3d14a0244c2b6790105eb065063a6a9cc23b9c5f4bf0322a1f8edf8e6e738eba
+    no_hoist: true
+    folder: binary
+
+build:
+  skip: True  # [not (linux and aarch64)]
+  number: {{ build_number }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+
+requirements:
+  host:
+  run:
+    - sysroot_linux-aarch64 2.34.*
+    - libselinux-el9-aarch64 ==3.6 *_{{ build_number }}
+    - libsepol-devel-el9-aarch64 >=3.6 *_{{ build_number }}
+
+test:
+  requires:
+    - pkg-config
+  commands:
+    - test -f ${PREFIX}/aarch64-conda_el9-linux-gnu/sysroot/usr/include/selinux/selinux.h
+    - test -f ${PREFIX}/aarch64-conda_el9-linux-gnu/sysroot/usr/lib64/libselinux.so
+    - export PKG_CONFIG_PATH=${PREFIX}/aarch64-conda_el9-linux-gnu/sysroot/usr/lib64/pkgconfig
+    - pkg-config --cflags libselinux
+
+about:
+  home: https://github.com/SELinuxProject/selinux/wiki
+  license: libselinux-1.0
+  license_family: Other
+  license_file:
+    - LICENSE
+  summary: (CDT) Header files and libraries used to build SELinux
+  description: |
+    The libselinux-devel package contains the libraries and header files needed
+    for developing SELinux applications.
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

@@ -1,0 +1,25 @@
+package:
+  name: copy-jdk-configs-el8-aarch64
+  version: 4.0
+
+source:
+  - url: https://vault.centos.org/centos/8/AppStream/aarch64/os/Packages/copy-jdk-configs-4.0-2.el8.noarch.rpm
+    sha256: d5dfcf3e90fa2b16b61aa3135eaa02fb596ad0d684d22fc3519f635639d07fda
+    no_hoist: true
+    folder: binary
+
+build:
+  skip: True  # [not (linux and aarch64)]
+  number: 0
+  noarch: generic
+
+about:
+  home: https://pagure.io/copy_jdk_configs
+  license: BSD
+  license_family: BSD
+  license_file:
+    - LICENSE
+  summary: "(CDT) JDKs configuration files copier"
+  description: |
+        Utility script to transfer JDKs configuration files between updates or for
+        archiving. With script to fix incorrectly created rpmnew files

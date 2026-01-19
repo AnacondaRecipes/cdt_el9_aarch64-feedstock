@@ -1,0 +1,44 @@
+package:
+  name: audit-libs-devel-el9-aarch64
+  version: 3.1.5
+
+source:
+  - url: https://download.rockylinux.org/vault/rocky/9.5/AppStream/aarch64/os/Packages/a/audit-libs-devel-3.1.5-1.el9.aarch64.rpm
+    sha256: 43bf595beffe2b8c11415bf2ce036ee28d26f3caf6045713903f5823c9852ecb
+    no_hoist: true
+    folder: binary
+
+build:
+  skip: True  # [not (linux and aarch64)]
+  number: {{ build_number }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+
+requirements:
+  host:
+  run:
+    - sysroot_linux-aarch64 2.34.*
+    - audit-libs-el9-aarch64 ==3.1.5 *_{{ build_number }}
+    - libcap-ng-devel-el9-aarch64 >=0.8.2 *_{{ build_number }}
+
+test:
+  commands:
+    - test -f ${PREFIX}/aarch64-conda_el9-linux-gnu/sysroot/usr/include/libaudit.h
+    - test -f ${PREFIX}/aarch64-conda_el9-linux-gnu/sysroot/usr/include/auparse.h
+    - test -f ${PREFIX}/aarch64-conda_el9-linux-gnu/sysroot/usr/lib64/libaudit.so
+    - test -f ${PREFIX}/aarch64-conda_el9-linux-gnu/sysroot/usr/lib64/libauparse.so
+
+about:
+  home: http://people.redhat.com/sgrubb/audit/
+  license: LGPL-2.1-only  # LGPLv2+
+  license_family: LGPL
+  license_file:
+    - lgpl-2.1.txt
+  summary: (CDT) Header files for libaudit
+  description: |
+    The audit-libs-devel package contains the header files needed for developing
+    applications that need to use the audit framework libraries.
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

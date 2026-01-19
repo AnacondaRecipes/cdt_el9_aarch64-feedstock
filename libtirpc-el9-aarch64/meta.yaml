@@ -1,0 +1,53 @@
+package:
+  name: libtirpc-el9-aarch64
+  version: 1.3.3
+
+source:
+  - url: https://download.rockylinux.org/vault/rocky/9.5/BaseOS/aarch64/os/Packages/l/libtirpc-1.3.3-9.el9.aarch64.rpm
+    sha256: fc3bc7f1af1169b5a5fc8b58940507ce9c221b647ae717af4b283f168d82ae0e
+    no_hoist: true
+    folder: binary
+
+build:
+  skip: True  # [not (linux and aarch64)]
+  number: {{ build_number }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - sysroot_linux-aarch64 2.34.*
+  host:
+  run:
+    - sysroot_linux-aarch64 2.34.*
+    - krb5
+
+test:
+  commands:
+    - test -f ${PREFIX}/aarch64-conda_el9-linux-gnu/sysroot/lib64/libtirpc.so.3
+    - test -f ${PREFIX}/aarch64-conda_el9-linux-gnu/sysroot/lib64/libtirpc.so.3.0.0
+
+about:
+  home: http://git.linux-nfs.org/?p=steved/libtirpc.git;a=summary
+  license: BSD-3-Clause  # SISSL and BSD
+  license_family: BSD
+  license_file:
+    - COPYING
+  summary: (CDT) Transport Independent RPC Library
+  description: |
+    This package contains SunLib's implementation of transport-independent
+    RPC (TI-RPC) documentation.  This library forms a piece of the base of
+    Open Network Computing (ONC), and is derived directly from the
+    Solaris 2.3 source.
+
+    TI-RPC is an enhanced version of TS-RPC that requires the UNIX System V
+    Transport Layer Interface (TLI) or an equivalent X/Open Transport Interface
+    (XTI).  TI-RPC is on-the-wire compatible with the TS-RPC, which is supported
+    by almost 70 vendors on all major operating systems.  TS-RPC source code
+    (RPCSRC 4.0) remains available from several internet sites.
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts
