@@ -19,8 +19,8 @@ requirements:
   build:
     - sysroot_linux-aarch64 2.34.*
   host:
-    - copy-jdk-configs-el8-aarch64 >=4.0
-    - javapackages-filesystem-el8-aarch64 >=5.3.0
+    - copy-jdk-configs-el9-aarch64 >=4.0 *_{{ build_number }}
+    - javapackages-filesystem-el9-aarch64 >=6.0.0 *_{{ build_number }}
     - ca-certificates
     - alsa-lib
     - xorg-libx11
@@ -30,8 +30,8 @@ requirements:
     - xorg-libxtst
   run:
     - sysroot_linux-aarch64 2.34.*
-    - copy-jdk-configs-el8-aarch64 >=4.0
-    - javapackages-filesystem-el8-aarch64 >=5.3.0
+    - copy-jdk-configs-el9-aarch64 >=4.0 *_{{ build_number }}
+    - javapackages-filesystem-el9-aarch64 >=6.0.0 *_{{ build_number }}
     - ca-certificates
     - alsa-lib
     - xorg-libx11
@@ -46,11 +46,14 @@ test:
 
 about:
   home: http://openjdk.java.net/
-  # The nominal license is https://github.com/openjdk/jdk/blob/master/LICENSE
-  license: ASL 1.1 and ASL 2.0 and BSD and BSD with advertising and GPL+ and GPLv2 and GPLv2 with exceptions and IJG and LGPLv2+ and MIT and MPLv1.1 and MPLv2.0 and Public Domain and W3C and zlib
-  license_family: GPL2
-  license_file:
-    - LICENSE
-  summary: "(CDT) OpenJDK Runtime Environment"
+  license: ASL 1.1 and ASL 2.0 and BSD and BSD with advertising and GPL+ and GPLv2 and GPLv2 with exceptions and IJG and LGPLv2+ and MIT and MPLv2.0 and Public Domain and W3C and zlib
+  license_family: Other
+  summary: (CDT) OpenJDK 8 Runtime Environment
   description: |
-        The OpenJDK runtime environment.
+    The OpenJDK 8 runtime environment.
+  doc_url: http://openjdk.java.net/
+  dev_url: http://openjdk.java.net/
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

@@ -37,8 +37,11 @@ about:
     - lgpl-2.1.txt
   summary: (CDT) Header files for libaudit
   description: |
-    The audit-libs-devel package contains the header files needed for developing
-    applications that need to use the audit framework libraries.
+    The audit-libs-devel package contains the header files needed for
+    developing applications that need to use the audit framework libraries.
+  doc_url: http://people.redhat.com/sgrubb/audit/
+  dev_url: http://people.redhat.com/sgrubb/audit/
+
 extra:
   recipe-maintainers:
     - conda-forge/help-cdts

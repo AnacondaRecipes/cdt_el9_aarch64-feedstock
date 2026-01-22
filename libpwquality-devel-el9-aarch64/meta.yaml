@@ -35,13 +35,17 @@ test:
 about:
   home: https://github.com/libpwquality/libpwquality/
   license: BSD-3-Clause or GPL-2.0-only  # BSD or GPLv2+
-  license_family: GPL2
+  license_family: Other
   license_file:
     - COPYING
   summary: (CDT) Support for development of applications using the libpwquality library
   description: |
-    Files needed for development of applications using the libpwquality library.
+    Files needed for development of applications using the libpwquality
+    library.
     See the pwquality.h header file for the API.
+  doc_url: https://github.com/libpwquality/libpwquality/
+  dev_url: https://github.com/libpwquality/libpwquality/
+
 extra:
   recipe-maintainers:
     - conda-forge/help-cdts

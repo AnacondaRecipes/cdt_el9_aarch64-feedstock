@@ -39,8 +39,11 @@ about:
     - LICENSE
   summary: (CDT) Header files and libraries used to build SELinux
   description: |
-    The libselinux-devel package contains the libraries and header files needed
-    for developing SELinux applications.
+    The libselinux-devel package contains the libraries and header files
+    needed for developing SELinux applications.
+  doc_url: https://github.com/SELinuxProject/selinux/wiki
+  dev_url: https://github.com/SELinuxProject/selinux/wiki
+
 extra:
   recipe-maintainers:
     - conda-forge/help-cdts

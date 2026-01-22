@@ -35,7 +35,7 @@ test:
     - test -f ${PREFIX}/aarch64-conda_el9-linux-gnu/sysroot/usr/lib64/libkmod.so.2.3.6
 
 about:
-  home: http://git.kernel.org/?p=utils/kernel/kmod/kmod.git;a=summary
+  home: https://git.kernel.org/pub/scm/utils/kernel/kmod/kmod.git
   license: LGPL-2.1-only  # LGPLv2+
   license_family: LGPL
   license_file:
@@ -44,6 +44,9 @@ about:
   description: |
     The kmod-libs package provides runtime libraries for any application that
     wishes to load or unload Linux kernel modules from the running system.
+  doc_url: https://git.kernel.org/pub/scm/utils/kernel/kmod/kmod.git
+  dev_url: https://git.kernel.org/pub/scm/utils/kernel/kmod/kmod.git
+
 extra:
   recipe-maintainers:
     - conda-forge/help-cdts

@@ -42,8 +42,11 @@ about:
     - lgpl-2.1.txt
   summary: (CDT) Dynamic library for libaudit
   description: |
-    The audit-libs package contains the dynamic libraries needed for applications
-    to use the audit framework.
+    The audit-libs package contains the dynamic libraries needed for
+    applications to use the audit framework.
+  doc_url: http://people.redhat.com/sgrubb/audit/
+  dev_url: http://people.redhat.com/sgrubb/audit/
+
 extra:
   recipe-maintainers:
     - conda-forge/help-cdts

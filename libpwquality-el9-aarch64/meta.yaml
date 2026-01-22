@@ -35,14 +35,18 @@ test:
 about:
   home: https://github.com/libpwquality/libpwquality/
   license: BSD-3-Clause or GPL-2.0-only  # BSD or GPLv2+
-  license_family: GPL2
+  license_family: Other
   license_file:
     - COPYING
-  summary: "(CDT) A library for password generation and password quality checking"
+  summary: (CDT) A library for password generation and password quality checking
   description: |
-        This is a library for password quality checks and generation of random
-        passwords that pass the checks. This library uses the cracklib and cracklib
-        dictionaries to perform some of the checks.
+    This is a library for password quality checks and generation
+    of random passwords that pass the checks.
+    This library uses the cracklib and cracklib dictionaries
+    to perform some of the checks.
+  doc_url: https://github.com/libpwquality/libpwquality/
+  dev_url: https://github.com/libpwquality/libpwquality/
+
 extra:
   recipe-maintainers:
     - conda-forge/help-cdts

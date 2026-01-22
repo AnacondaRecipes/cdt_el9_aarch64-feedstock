@@ -37,13 +37,16 @@ about:
   license_file:
     - gpl-2.0.txt
     - Copyright
-  summary: "(CDT) Files needed for developing PAM-aware applications and modules for PAM"
+  summary: (CDT) Files needed for developing PAM-aware applications and modules for PAM
   description: |
-        PAM (Pluggable Authentication Modules) is a system security tool that allows
-        system administrators to set authentication policy without having to recompile
-        programs that handle authentication. This package contains header files used
-        for building both PAM-aware applications and modules for use with the PAM
-        system.
+    PAM (Pluggable Authentication Modules) is a system security tool that
+    allows system administrators to set authentication policy without
+    having to recompile programs that handle authentication. This package
+    contains header files used for building both PAM-aware applications
+    and modules for use with the PAM system.
+  doc_url: http://www.linux-pam.org/
+  dev_url: http://www.linux-pam.org/
+
 extra:
   recipe-maintainers:
     - conda-forge/help-cdts

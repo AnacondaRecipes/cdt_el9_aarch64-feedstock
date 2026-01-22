@@ -30,14 +30,17 @@ test:
     - test -f ${PREFIX}/aarch64-conda_el9-linux-gnu/sysroot/usr/lib64/libcap-ng.so.0.0.0
 
 about:
-  home: http://people.redhat.com/sgrubb/libcap-ng
+  home: https://people.redhat.com/sgrubb/libcap-ng/
   license: LGPL-2.1-only  # LGPLv2+
   license_family: LGPL
   license_file:
     - COPYING.LIB
-  summary: (CDT) An alternate posix capabilities library
+  summary: (CDT) Alternate posix capabilities library
   description: |
     Libcap-ng is a library that makes using posix capabilities easier
+  doc_url: https://people.redhat.com/sgrubb/libcap-ng/
+  dev_url: https://people.redhat.com/sgrubb/libcap-ng/
+
 extra:
   recipe-maintainers:
     - conda-forge/help-cdts

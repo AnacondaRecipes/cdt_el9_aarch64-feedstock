@@ -35,11 +35,14 @@ about:
   license: LGPL-2.1-only  # LGPLv2+
   license_family: LGPL
   license_file:
-    - COPYING
+    - LICENSE
   summary: (CDT) Header files and libraries used to build policy manipulation tools
   description: |
-    The libsepol-devel package contains the libraries and header files needed for
-    developing applications that manipulate binary policies.
+    The libsepol-devel package contains the libraries and header files
+    needed for developing applications that manipulate binary policies.
+  doc_url: https://github.com/SELinuxProject/selinux/wiki
+  dev_url: https://github.com/SELinuxProject/selinux/wiki
+
 extra:
   recipe-maintainers:
     - conda-forge/help-cdts

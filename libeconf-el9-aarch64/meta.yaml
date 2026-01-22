@@ -30,17 +30,19 @@ test:
     - test -f ${PREFIX}/aarch64-conda_el9-linux-gnu/sysroot/usr/lib64/libeconf.so.0.4.1
 
 about:
-  home: http://www.linux-pam.org/
+  home: https://github.com/openSUSE/libeconf
   license: MIT
   license_family: MIT
   license_file:
     - LICENSE
-    - LICENSE
-  summary: (CDT) An extensible library which provides authentication for applications
+  summary: (CDT) Enhanced config file parser library
   description: |
-    PAM (Pluggable Authentication Modules) is a system security tool that allows
-    system administrators to set authentication policy without having to recompile
-    programs that handle authentication.
+    libeconf is a highly flexible and configurable library to parse and manage
+    key=value configuration files. It reads configuration file snippets from
+    different directories and builds the final configuration file from it.
+  doc_url: https://github.com/openSUSE/libeconf
+  dev_url: https://github.com/openSUSE/libeconf
+
 extra:
   recipe-maintainers:
     - conda-forge/help-cdts

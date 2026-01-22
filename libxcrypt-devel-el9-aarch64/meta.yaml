@@ -44,6 +44,9 @@ about:
   description: |
     The libxcrypt-devel package contains libraries and header files for
     developing applications that use libxcrypt.
+  doc_url: https://github.com/besser82/libxcrypt
+  dev_url: https://github.com/besser82/libxcrypt
+
 extra:
   recipe-maintainers:
     - conda-forge/help-cdts

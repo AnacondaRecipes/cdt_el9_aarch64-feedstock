@@ -40,6 +40,9 @@ about:
   description: |
     This package includes header files and libraries necessary for
     developing programs which use the tirpc library.
+  doc_url: http://git.linux-nfs.org/?p=steved/libtirpc.git;a=summary
+  dev_url: http://git.linux-nfs.org/?p=steved/libtirpc.git;a=summary
+
 extra:
   recipe-maintainers:
     - conda-forge/help-cdts

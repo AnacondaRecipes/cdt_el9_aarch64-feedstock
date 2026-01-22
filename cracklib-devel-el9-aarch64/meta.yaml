@@ -34,8 +34,11 @@ about:
     - COPYING.LIB
   summary: (CDT) Development files needed for building applications which use cracklib
   description: |
-    The cracklib-devel package contains the header files and libraries needed for
-    compiling applications which use cracklib.
+    The cracklib-devel package contains the header files and libraries needed
+    for compiling applications which use cracklib.
+  doc_url: http://sourceforge.net/projects/cracklib/
+  dev_url: http://sourceforge.net/projects/cracklib/
+
 extra:
   recipe-maintainers:
     - conda-forge/help-cdts

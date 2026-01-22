@@ -32,11 +32,17 @@ about:
   home: http://openjdk.java.net/
   # The nominal license is https://github.com/openjdk/jdk/blob/master/LICENSE
   license: ASL 1.1 and ASL 2.0 and BSD and BSD with advertising and GPL+ and GPLv2 and GPLv2 with exceptions and IJG and LGPLv2+ and MIT and MPLv2.0 and Public Domain and W3C and zlib
-  license_family: GPL2
+  license_family: Other
   license_file:
-    - THIRD_PARTY_README
     - ASSEMBLY_EXCEPTION
     - LICENSE
-  summary: "(CDT) OpenJDK Development Environment"
+    - THIRD_PARTY_README
+  summary: (CDT) OpenJDK 8 Development Environment
   description: |
-        The OpenJDK development tools.
+    The OpenJDK 8 development tools.
+  doc_url: http://openjdk.java.net/
+  dev_url: http://openjdk.java.net/
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

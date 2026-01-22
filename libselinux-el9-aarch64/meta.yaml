@@ -38,17 +38,22 @@ about:
     - LICENSE
   summary: (CDT) SELinux library and simple utilities
   description: |
-    Security-enhanced Linux is a feature of the Linux® kernel and a number of
-    utilities with enhanced security functionality designed to add mandatory
-    access controls to Linux.  The Security-enhanced Linux kernel contains new
-    architectural components originally developed to improve the security of the
-    Flask operating system. These architectural components provide general support
-    for the enforcement of many kinds of mandatory access control policies,
-    including those based on the concepts of Type Enforcement®, Role-based Access
-    Control, and Multi-level Security.  libselinux provides an API for SELinux
-    applications to get and set process and file security contexts and to obtain
-    security policy decisions.  Required for any applications that use the SELinux
-    API.
+    Security-enhanced Linux is a feature of the Linux® kernel and a number
+    of utilities with enhanced security functionality designed to add
+    mandatory access controls to Linux.  The Security-enhanced Linux
+    kernel contains new architectural components originally developed to
+    improve the security of the Flask operating system. These
+    architectural components provide general support for the enforcement
+    of many kinds of mandatory access control policies, including those
+    based on the concepts of Type Enforcement®, Role-based Access
+    Control, and Multi-level Security.
+
+    libselinux provides an API for SELinux applications to get and set
+    process and file security contexts and to obtain security policy
+    decisions.  Required for any applications that use the SELinux API.
+  doc_url: https://github.com/SELinuxProject/selinux/wiki
+  dev_url: https://github.com/SELinuxProject/selinux/wiki
+
 extra:
   recipe-maintainers:
     - conda-forge/help-cdts

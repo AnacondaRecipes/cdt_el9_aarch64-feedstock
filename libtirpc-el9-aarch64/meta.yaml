@@ -48,6 +48,9 @@ about:
     (XTI).  TI-RPC is on-the-wire compatible with the TS-RPC, which is supported
     by almost 70 vendors on all major operating systems.  TS-RPC source code
     (RPCSRC 4.0) remains available from several internet sites.
+  doc_url: http://git.linux-nfs.org/?p=steved/libtirpc.git;a=summary
+  dev_url: http://git.linux-nfs.org/?p=steved/libtirpc.git;a=summary
+
 extra:
   recipe-maintainers:
     - conda-forge/help-cdts

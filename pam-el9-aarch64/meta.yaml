@@ -39,13 +39,16 @@ about:
   license: BSD-3-Clause or GPL-2.0-only  # BSD and GPLv2+
   license_family: GPL2
   license_file:
-    - gpl-2.0.txt
     - Copyright
+    - gpl-2.0.txt
   summary: (CDT) An extensible library which provides authentication for applications
   description: |
-    PAM (Pluggable Authentication Modules) is a system security tool that allows
-    system administrators to set authentication policy without having to recompile
-    programs that handle authentication.
+    PAM (Pluggable Authentication Modules) is a system security tool that
+    allows system administrators to set authentication policy without
+    having to recompile programs that handle authentication.
+  doc_url: http://www.linux-pam.org/
+  dev_url: http://www.linux-pam.org/
+
 extra:
   recipe-maintainers:
     - conda-forge/help-cdts

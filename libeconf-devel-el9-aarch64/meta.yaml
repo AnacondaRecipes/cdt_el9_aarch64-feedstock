@@ -25,19 +25,18 @@ test:
     - test -f ${PREFIX}/aarch64-conda_el9-linux-gnu/sysroot/usr/lib64/libeconf.so
 
 about:
-  home: http://www.linux-pam.org/
+  home: https://github.com/openSUSE/libeconf
   license: MIT
   license_family: MIT
+  summary: (CDT) Development files for libeconf
   license_file:
     - LICENSE
-    - LICENSE
-  summary: "(CDT) Files needed for developing PAM-aware applications and modules for PAM"
   description: |
-        PAM (Pluggable Authentication Modules) is a system security tool that allows
-        system administrators to set authentication policy without having to recompile
-        programs that handle authentication. This package contains header files used
-        for building both PAM-aware applications and modules for use with the PAM
-        system.
+    The libeconf-devel package contains libraries and header files for
+    developing applications that use libeconf.
+  doc_url: https://github.com/openSUSE/libeconf
+  dev_url: https://github.com/openSUSE/libeconf
+
 extra:
   recipe-maintainers:
     - conda-forge/help-cdts

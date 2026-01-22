@@ -36,40 +36,31 @@ about:
   license_family: LGPL
   license_file:
     - AUTHORS
-    - LICENSING
     - COPYING.LIB
-  summary: (CDT) Extended crypt library for DES, MD5, Blowfish and others
+    - LICENSING
+  summary: (CDT) Extended crypt library for descrypt, md5crypt, bcrypt, and others
   description: |
     libxcrypt is a modern library for one-way hashing of passwords.  It
-    supports DES, MD5, SHA-2-256, SHA-2-512, and bcrypt-based password
-    hashes, and provides the traditional Unix 'crypt' and 'crypt_r'
-    interfaces, as well as a set of extended interfaces pioneered by
-    Openwall Linux, 'crypt_rn', 'crypt_ra', 'crypt_gensalt',
-    'crypt_gensalt_rn', and 'crypt_gensalt_ra'.
+    supports a wide variety of both modern and historical hashing methods:
+    yescrypt, gost-yescrypt, scrypt, bcrypt, sha512crypt, sha256crypt,
+    md5crypt, SunMD5, sha1crypt, NT, bsdicrypt, bigcrypt, and descrypt.
+    It provides the traditional Unix crypt and crypt_r interfaces, as well
+    as a set of extended interfaces pioneered by Openwall Linux, crypt_rn,
+    crypt_ra, crypt_gensalt, crypt_gensalt_rn, and crypt_gensalt_ra.
 
     libxcrypt is intended to be used by login(1), passwd(1), and other
     similar programs; that is, to hash a small number of passwords during
-    an interactive authentication dialogue with a human.  It is not
-    suitable for use in bulk password-cracking applications, or in any
-    other situation where speed is more important than careful handling of
-    sensitive data.  However, it *is* intended to be fast and lightweight
-    enough for use in servers that must field thousands of login attempts
-    per minute.
+    an interactive authentication dialogue with a human. It is not suitable
+    for use in bulk password-cracking applications, or in any other situation
+    where speed is more important than careful handling of sensitive data.
+    However, it is intended to be fast and lightweight enough for use in
+    servers that must field thousands of login attempts per minute.
 
-    On Linux-based systems, by default libxcrypt will be binary backward
-    compatible with the libcrypt.so.1 shipped as part of the GNU C Library.
-    This means that all existing binary executables linked against glibc's
-    libcrypt should work unmodified with this library's libcrypt.so.1.  We
-    have taken pains to provide exactly the same "symbol versions" as were
-    used by glibc on various CPU architectures, and to account for the
-    variety of ways in which the Openwall extensions were patched into
-    glibc's libcrypt by some Linux distributions.  (For instance,
-    compatibility symlinks for SuSE's "libowcrypt" are provided.)
+    This version of the library does not provide the legacy API functions
+    that have been provided by glibc's libcrypt.so.1.
+  doc_url: https://github.com/besser82/libxcrypt
+  dev_url: https://github.com/besser82/libxcrypt
 
-    However, the converse is not true: programs linked against libxcrypt
-    will not work with glibc's libcrypt.  Also, programs that use certain
-    legacy APIs supplied by glibc's libcrypt ('encrypt', 'encrypt_r',
-    'setkey', 'setkey_r', and 'fcrypt') cannot be compiled against libxcrypt.
 extra:
   recipe-maintainers:
     - conda-forge/help-cdts
