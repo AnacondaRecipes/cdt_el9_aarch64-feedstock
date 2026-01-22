@@ -31,9 +31,9 @@ test:
     - pkg-config --cflags libcrypt
     - pkg-config --cflags libxcrypt
 
+# LICENSING says LGPL-2.1-or-later, COPYING.LIB is that license
 about:
   home: https://github.com/besser82/libxcrypt
-  # LICENSING says LGPL-2.1-or-later, COPYING.LIB is that license
   license: LGPL-2.1-or-later  # LGPLv2+ and BSD and Public Domain
   license_family: LGPL
   license_file:

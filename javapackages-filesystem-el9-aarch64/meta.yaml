@@ -15,7 +15,7 @@ build:
 
 about:
   home: https://github.com/fedora-java/javapackages
-  license: BSD-3-Clause
+  license: BSD-3-Clause  # BSD
   license_family: BSD
   summary: (CDT) Java packages filesystem layout
   description: |

@@ -29,9 +29,9 @@ test:
     - test -f ${PREFIX}/aarch64-conda_el9-linux-gnu/sysroot/usr/lib64/fipscheck/libcrypt.so.2.0.0.hmac
     - test -f ${PREFIX}/aarch64-conda_el9-linux-gnu/sysroot/usr/lib64/fipscheck/libcrypt.so.2.0.0.hmac
 
+# LICENSING says LGPL-2.1-or-later, COPYING.LIB is that license
 about:
   home: https://github.com/besser82/libxcrypt
-  # LICENSING says LGPL-2.1-or-later, COPYING.LIB is that license
   license: LGPL-2.1-or-later  # LGPLv2+ and BSD and Public Domain
   license_family: LGPL
   license_file:

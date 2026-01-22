@@ -28,9 +28,9 @@ about:
   home: https://github.com/openSUSE/libeconf
   license: MIT
   license_family: MIT
-  summary: (CDT) Development files for libeconf
   license_file:
     - LICENSE
+  summary: (CDT) Development files for libeconf
   description: |
     The libeconf-devel package contains libraries and header files for
     developing applications that use libeconf.

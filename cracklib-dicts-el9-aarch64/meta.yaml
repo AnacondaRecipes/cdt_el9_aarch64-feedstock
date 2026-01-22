@@ -25,12 +25,12 @@ test:
   commands:
     - test -f ${PREFIX}/aarch64-conda_el9-linux-gnu/sysroot/usr/lib64/cracklib_dict.pwd
 
+# The license isn't maintained in the code base but the original
+# development site, https://sourceforge.net/projects/cracklib/,
+# suggests LGPL-2.0
 about:
   home: http://sourceforge.net/projects/cracklib/
-  # The license isn't maintained in the code base but the original
-  # development site, https://sourceforge.net/projects/cracklib/,
-  # suggests LGPL-2.0
-  license: LGPL-2.0-only  # LGPL-2.0-or-later
+  license: LGPL-2.0-only  # LGPLv2+
   license_family: LGPL
   license_file:
     - LGPL-2.0-only
