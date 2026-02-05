@@ -606,7 +606,7 @@ for my in meta_yamls:
             if lic_mo:
                 lic = lic_mo.group(1).rstrip()
                 # license: <SPDX>  # Red Hat license if different
-                if lic != pkg_data[pkg]['rpm_info']['License']:
+                if 'License' in pkg_data[pkg]['rpm_info'] and lic != pkg_data[pkg]['rpm_info']['License']:
                     pkg_data[pkg]['rpm_info']['License'] = f"{lic}  # {pkg_data[pkg]['rpm_info']['License']}"
                 else:
                     pkg_data[pkg]['rpm_info']['License'] = f"{lic}"
@@ -758,8 +758,8 @@ for my in meta_yamls:
                             pass
                         else:
                             rpm_warning = True
-                            logging.warning("{pkg:25} rpm is not available on this system")
-                            logging.warning("re-run on an Enteprise Linux system for additional features")
+                            logging.warning("The rpm command is not available on this system")
+                            logging.warning("re-run on an Enteprise Linux system for correct about: section information")
 
         if not skip:
             new_meta.append(line.rstrip())
@@ -774,4 +774,3 @@ for my in meta_yamls:
 
     # similarly for the build.sh script
     rewrite_build(str(my))
-
