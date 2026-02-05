@@ -1,0 +1,10 @@
+libpwquality:
+  pam:
+    with_pam:
+      - "False"
+      - "True"
+libpwquality-devel:
+  pam-devel:
+    with_pam:
+      - "False"
+      - "True"
