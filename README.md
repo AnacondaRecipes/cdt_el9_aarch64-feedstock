@@ -11,8 +11,22 @@ The text follows `el8` and `x86_64`, change as required.
 The version of GLIBC is Rocky release-specific, `el8` is 2.28, `el9`
 is 2.34 etc..
 
-There is a script, `conda-build-all` which iterates through the CDTs
-building them in order:
+*feedstock-suite* has a
+[cdt-build-order.py](https://github.com/anaconda/feedstock-suite/blob/main/bin/cdt-build-order.py)
+tool which allows for both local and CI builds.
+
+In both cases, from the feedstock directory:
+
+* `cdt-build-order.py --log=INFO --conda-build` for local builds
+
+* `cdt-build-order.py --log=INFO --pbp` to create `pbp.yaml` for PBP
+  builds
+
+  This needs to be run on a platform with the `pbp-cli` installed and
+  you can subsequently create the PBP graph from `pbp.yaml`.
+
+There is a legacy script, `conda-build-all` which iterates through the
+CDTs building them in order:
 
 ``` bash
 $ ./cdt_el8_x86_64/conda-build-all [-c {sysroot-staging-channel}]
@@ -65,7 +79,7 @@ to fix the package dependences and the `about` section.
 The script `update.py` will iterate over all `*-el[0-9]+-<arch>`
 directories (more specifically, it looks for directories with
 `meta.yaml` files) and infers the Rocky package, Enterprise Linux
-variant and architecture from the directory name and then will
+variant and architecture from the *directory name* and then will
 
 * search the [Rocky
   vault](https://download.rockylinux.org/vault/rocky/) for suitable
@@ -284,15 +298,18 @@ a complete set of library->package mappings and therefore you can
 successfully match any needed libraries to packages and flag up any
 missing ones.
 
-Using such a script, `report-library-dependencies`, in the context of
-a build we might:
+Using such a script,
+[cdt-report-library-dependencies](https://github.com/anaconda/feedstock-suite/blob/main/bin/cdt-report-library-dependencies),
+in the context of a build we might:
 
 ``` bash
 $ cd /path/to/aggregate
 $ ./cdt_el8_x86_64/conda-build-all [-c {sysroot-staging-channel}]
 ...
 $ cd /path/to/conda-bld/noarch
-$ /path/to/report-library-dependencies *-el8-x86_64*
+$ /path/to/cdt-report-library-dependencies *-el8-x86_64*
+...
+lots of output
 ...
 needed        by                   in
 libawt.so     libawt_xawt.so       java-1.8.0-openjdk
