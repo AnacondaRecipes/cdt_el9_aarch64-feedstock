@@ -1,0 +1,55 @@
+package:
+  name: pam-el9-aarch64
+  version: 1.5.1
+
+source:
+  - url: https://download.rockylinux.org/vault/rocky/9.5/BaseOS/aarch64/os/Packages/p/pam-1.5.1-22.el9_5.aarch64.rpm
+    sha256: dc525192a38d059cf908b3d7a2e439b8f84181df3fba324bcc197bd82b0f57cb
+    no_hoist: true
+    folder: binary
+
+build:
+  skip: True  # [not (linux and aarch64)]
+  number: {{ build_number }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - sysroot_linux-aarch64 2.34.*
+  host:
+  run:
+    - sysroot_linux-aarch64 2.34.*
+    - audit-libs-el9-aarch64 >=3.1.5 *_{{ build_number }}
+    - libpwquality-el9-aarch64 >=1.4.4 *_{{ build_number }}
+    - libselinux-el9-aarch64 >=3.6 *_{{ build_number }}
+    - libtirpc-el9-aarch64 >=1.3.3 *_{{ build_number }}
+    - libxcrypt-el9-aarch64 >=4.4.18 *_{{ build_number }}
+    - openssl 3  # libcrypto.so.3
+
+test:
+  commands:
+    - test -f ${PREFIX}/aarch64-conda_el9-linux-gnu/sysroot/usr/lib64/libpam.so.0
+    - test -f ${PREFIX}/aarch64-conda_el9-linux-gnu/sysroot/usr/lib64/libpam.so.0.85.1
+
+about:
+  home: http://www.linux-pam.org/
+  license: BSD-3-Clause or GPL-2.0-only  # BSD and GPLv2+
+  license_family: GPL2
+  license_file:
+    - Copyright
+    - gpl-2.0.txt
+  summary: (CDT) An extensible library which provides authentication for applications
+  description: |
+    PAM (Pluggable Authentication Modules) is a system security tool that
+    allows system administrators to set authentication policy without
+    having to recompile programs that handle authentication.
+  doc_url: http://www.linux-pam.org/
+  dev_url: http://www.linux-pam.org/
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

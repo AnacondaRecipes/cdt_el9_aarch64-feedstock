@@ -1,0 +1,31 @@
+package:
+  name: copy-jdk-configs-el9-aarch64
+  version: 4.0
+
+source:
+  - url: https://download.rockylinux.org/vault/rocky/9.5/AppStream/aarch64/os/Packages/c/copy-jdk-configs-4.0-3.el9.noarch.rpm
+    sha256: 499c9d3876e9a206fad34a5a375ae1c8c25e5c7f1202eb52656395ce46fd14f7
+    no_hoist: true
+    folder: binary
+
+build:
+  skip: True  # [not (linux and aarch64)]
+  number: {{ build_number }}
+  noarch: generic
+
+about:
+  home: https://pagure.io/copy_jdk_configs
+  license: BSD
+  license_family: BSD
+  license_file:
+    - LICENSE
+  summary: (CDT) JDKs configuration files copier
+  description: |
+    Utility script to transfer JDKs configuration files between updates or for
+    archiving. With script to fix incorrectly created rpmnew files
+  doc_url: https://pagure.io/copy_jdk_configs
+  dev_url: https://pagure.io/copy_jdk_configs
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

@@ -1,0 +1,46 @@
+package:
+  name: libcap-ng-el9-aarch64
+  version: 0.8.2
+
+source:
+  - url: https://download.rockylinux.org/vault/rocky/9.5/BaseOS/aarch64/os/Packages/l/libcap-ng-0.8.2-7.el9.aarch64.rpm
+    sha256: 72cb3896e98585a904913bdeed7ad858faeddd12639969640d1e7616a132cd8b
+    no_hoist: true
+    folder: binary
+
+build:
+  skip: True  # [not (linux and aarch64)]
+  number: {{ build_number }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - sysroot_linux-aarch64 2.34.*
+  host:
+  run:
+    - sysroot_linux-aarch64 2.34.*
+
+test:
+  commands:
+    - test -f ${PREFIX}/aarch64-conda_el9-linux-gnu/sysroot/usr/lib64/libcap-ng.so.0
+    - test -f ${PREFIX}/aarch64-conda_el9-linux-gnu/sysroot/usr/lib64/libcap-ng.so.0.0.0
+
+about:
+  home: https://people.redhat.com/sgrubb/libcap-ng/
+  license: LGPL-2.1-only  # LGPLv2+
+  license_family: LGPL
+  license_file:
+    - COPYING.LIB
+  summary: (CDT) Alternate posix capabilities library
+  description: |
+    Libcap-ng is a library that makes using posix capabilities easier
+  doc_url: https://people.redhat.com/sgrubb/libcap-ng/
+  dev_url: https://people.redhat.com/sgrubb/libcap-ng/
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

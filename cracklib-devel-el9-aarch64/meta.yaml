@@ -1,0 +1,44 @@
+package:
+  name: cracklib-devel-el9-aarch64
+  version: 2.9.6
+
+source:
+  - url: https://download.rockylinux.org/vault/rocky/9.5/devel/aarch64/os/Packages/c/cracklib-devel-2.9.6-27.el9.aarch64.rpm
+    sha256: d7d07290226b44c9731e43fcc8f474dab7a099ae235e3877096bb6cc72c7a465
+    no_hoist: true
+    folder: binary
+
+build:
+  skip: True  # [not (linux and aarch64)]
+  number: {{ build_number }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+
+requirements:
+  host:
+  run:
+    - sysroot_linux-aarch64 2.34.*
+    - cracklib-el9-aarch64 ==2.9.6 *_{{ build_number }}
+
+test:
+  commands:
+    - test -f ${PREFIX}/aarch64-conda_el9-linux-gnu/sysroot/usr/include/crack.h
+    - test -f ${PREFIX}/aarch64-conda_el9-linux-gnu/sysroot/usr/lib64/libcrack.so
+
+about:
+  home: http://sourceforge.net/projects/cracklib/
+  license: LGPL-2.1-only  # LGPLv2+
+  license_family: LGPL
+  license_file:
+    - COPYING.LIB
+  summary: (CDT) Development files needed for building applications which use cracklib
+  description: |
+    The cracklib-devel package contains the header files and libraries needed
+    for compiling applications which use cracklib.
+  doc_url: http://sourceforge.net/projects/cracklib/
+  dev_url: http://sourceforge.net/projects/cracklib/
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

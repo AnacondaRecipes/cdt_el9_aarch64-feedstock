@@ -1,0 +1,42 @@
+package:
+  name: libeconf-devel-el9-aarch64
+  version: 0.4.1
+
+source:
+  - url: https://download.rockylinux.org/vault/rocky/9.5/devel/aarch64/os/Packages/l/libeconf-devel-0.4.1-4.el9.aarch64.rpm
+    sha256: f4d73b0dc3dbf5f970939283efed5bb62aa9a095df2373b764f9e2994225cbd3
+    no_hoist: true
+    folder: binary
+
+build:
+  skip: True  # [not (linux and aarch64)]
+  number: {{ build_number }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+
+requirements:
+  host:
+  run:
+    - libeconf-el9-aarch64 ==0.4.1 *_{{ build_number }}
+
+test:
+  commands:
+    - test -f ${PREFIX}/aarch64-conda_el9-linux-gnu/sysroot/usr/lib64/libeconf.so
+
+about:
+  home: https://github.com/openSUSE/libeconf
+  license: MIT
+  license_family: MIT
+  license_file:
+    - LICENSE
+  summary: (CDT) Development files for libeconf
+  description: |
+    The libeconf-devel package contains libraries and header files for
+    developing applications that use libeconf.
+  doc_url: https://github.com/openSUSE/libeconf
+  dev_url: https://github.com/openSUSE/libeconf
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

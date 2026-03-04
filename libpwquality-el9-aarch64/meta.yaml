@@ -1,0 +1,52 @@
+package:
+  name: libpwquality-el9-aarch64
+  version: 1.4.4
+
+source:
+  - url: https://download.rockylinux.org/vault/rocky/9.5/BaseOS/aarch64/os/Packages/l/libpwquality-1.4.4-8.el9.aarch64.rpm
+    sha256: dff22028bc366d71fae19c6eecdd277a873cf7f66fa2b24effc16f8733247aa9
+    no_hoist: true
+    folder: binary
+
+build:
+  skip: True  # [not (linux and aarch64)]
+  number: {{ build_number }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - sysroot_linux-aarch64 2.34.*
+  host:
+  run:
+    - sysroot_linux-aarch64 2.34.*
+    - cracklib-el9-aarch64 >=2.9.6 *_{{ build_number }}
+    - cracklib-dicts-el9-aarch64 >=2.9.6 *_{{ build_number }}
+    - pam-el9-aarch64 >=1.5.1 *_{{ build_number }}  # [with_pam]
+
+test:
+  commands:
+    - test -f ${PREFIX}/aarch64-conda_el9-linux-gnu/sysroot/usr/lib64/libpwquality.so.1
+    - test -f ${PREFIX}/aarch64-conda_el9-linux-gnu/sysroot/usr/lib64/libpwquality.so.1.0.2
+
+about:
+  home: https://github.com/libpwquality/libpwquality/
+  license: BSD-3-Clause or GPL-2.0-only  # BSD or GPLv2+
+  license_family: Other
+  license_file:
+    - COPYING
+  summary: (CDT) A library for password generation and password quality checking
+  description: |
+    This is a library for password quality checks and generation
+    of random passwords that pass the checks.
+    This library uses the cracklib and cracklib dictionaries
+    to perform some of the checks.
+  doc_url: https://github.com/libpwquality/libpwquality/
+  dev_url: https://github.com/libpwquality/libpwquality/
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

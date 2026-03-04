@@ -1,0 +1,51 @@
+package:
+  name: libpwquality-devel-el9-aarch64
+  version: 1.4.4
+
+source:
+  - url: https://download.rockylinux.org/vault/rocky/9.5/devel/aarch64/os/Packages/l/libpwquality-devel-1.4.4-8.el9.aarch64.rpm
+    sha256: f678130b964895379652e6933473bc81500ffcd19b7579779209ffdba8222efb
+    no_hoist: true
+    folder: binary
+
+build:
+  skip: True  # [not (linux and aarch64)]
+  number: {{ build_number }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+
+requirements:
+  host:
+  run:
+    - sysroot_linux-aarch64 2.34.*
+    - libpwquality-el9-aarch64 ==1.4.4 *_{{ build_number }}
+    - cracklib-devel-el9-aarch64 >=2.9.6 *_{{ build_number }}
+    - pam-devel-el9-aarch64 >=1.5.1 *_{{ build_number }}  # [with_pam]
+
+test:
+  requires:
+    - pkg-config
+  commands:
+    - test -f ${PREFIX}/aarch64-conda_el9-linux-gnu/sysroot/usr/include/pwquality.h
+    - test -f ${PREFIX}/aarch64-conda_el9-linux-gnu/sysroot/usr/lib64/libpwquality.so
+    - export PKG_CONFIG_PATH=${PREFIX}/aarch64-conda_el9-linux-gnu/sysroot/usr/lib64/pkgconfig
+    - pkg-config --cflags pwquality
+
+about:
+  home: https://github.com/libpwquality/libpwquality/
+  license: BSD-3-Clause or GPL-2.0-only  # BSD or GPLv2+
+  license_family: Other
+  license_file:
+    - COPYING
+  summary: (CDT) Support for development of applications using the libpwquality library
+  description: |
+    Files needed for development of applications using the libpwquality
+    library.
+    See the pwquality.h header file for the API.
+  doc_url: https://github.com/libpwquality/libpwquality/
+  dev_url: https://github.com/libpwquality/libpwquality/
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

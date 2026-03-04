@@ -1,0 +1,48 @@
+package:
+  name: libeconf-el9-aarch64
+  version: 0.4.1
+
+source:
+  - url: https://download.rockylinux.org/vault/rocky/9.5/BaseOS/aarch64/os/Packages/l/libeconf-0.4.1-4.el9.aarch64.rpm
+    sha256: 280a92aa937a728394b39d4a1654453272cf04bfb1f9b130638bba82c7610348
+    no_hoist: true
+    folder: binary
+
+build:
+  skip: True  # [not (linux and aarch64)]
+  number: {{ build_number }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - sysroot_linux-aarch64 2.34.*
+  host:
+  run:
+    - sysroot_linux-aarch64 2.34.*
+
+test:
+  commands:
+    - test -f ${PREFIX}/aarch64-conda_el9-linux-gnu/sysroot/usr/lib64/libeconf.so.0
+    - test -f ${PREFIX}/aarch64-conda_el9-linux-gnu/sysroot/usr/lib64/libeconf.so.0.4.1
+
+about:
+  home: https://github.com/openSUSE/libeconf
+  license: MIT
+  license_family: MIT
+  license_file:
+    - LICENSE
+  summary: (CDT) Enhanced config file parser library
+  description: |
+    libeconf is a highly flexible and configurable library to parse and manage
+    key=value configuration files. It reads configuration file snippets from
+    different directories and builds the final configuration file from it.
+  doc_url: https://github.com/openSUSE/libeconf
+  dev_url: https://github.com/openSUSE/libeconf
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

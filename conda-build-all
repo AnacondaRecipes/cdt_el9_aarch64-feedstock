@@ -1,0 +1,90 @@
+#! /bin/bash
+
+# For standalone testing, you may want to:
+
+# conda build linux-sysroot-feedstock
+
+# then tar up that conda-bld directory in order that you can
+# repeatedly delete it and re-untar the sysroot back in (as it takes
+# some time).
+
+set -euo pipefail
+
+PROG_DIR=${0%/*}
+CDT_BASE=${PROG_DIR##*/}
+
+if [[ -d ${CDT_BASE} ]] ; then
+    cd ${CDT_BASE}
+fi
+
+# Build the CDTs "in order"
+
+ordered_cdts=(
+    libcap-ng
+    libcap-ng-devel
+    libeconf
+    libeconf-devel
+
+    audit-libs
+    audit-libs-devel
+
+    cracklib
+    cracklib-devel
+    cracklib-dicts
+
+    copy-jdk-configs
+    javapackages-filesystem
+    java-1.8.0-openjdk
+    java-1.8.0-openjdk-devel
+
+    libxcrypt
+    libxcrypt-devel
+
+    kmod-libs
+    kmod
+    kmod-devel
+
+    libpwquality
+    libpwquality-devel
+
+    libsepol
+    libsepol-devel
+    libselinux
+    libselinux-devel
+
+    libtirpc
+    libtirpc-devel
+
+    pam
+    pam-devel
+)
+
+cb_base_args=(
+    conda build
+    --error-overlinking
+    --error-overdepending
+    "$@"
+)
+
+for cdt in ${ordered_cdts[*]} ; do
+
+    cdt_recipe=( ${cdt}-el[0-9]*-*64 )
+
+    if [[ ! -d ${cdt_recipe} || ! -f ${cdt_recipe}/meta.yaml ]] ; then
+	echo "NOTICE: skipping ${cdt} -> ${cdt_recipe}"
+	continue
+    fi
+
+    cat <<EOF
+
+##############################
+#
+# ${cdt_recipe}
+# ${cb_base_args[@]} ${cdt_recipe}
+
+EOF
+
+    "${cb_base_args[@]}" ${cdt_recipe}
+done
+
+echo +${SECONDS}s: done

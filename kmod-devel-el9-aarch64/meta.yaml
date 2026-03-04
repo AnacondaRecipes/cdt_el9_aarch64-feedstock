@@ -1,0 +1,49 @@
+package:
+  name: kmod-devel-el9-aarch64
+  version: 28
+
+source:
+  - url: https://download.rockylinux.org/vault/rocky/9.5/devel/aarch64/os/Packages/k/kmod-devel-28-10.el9.aarch64.rpm
+    sha256: 3b60d29237678ada675ef036045d65bfbe1c3b39f214aa4ef0c8b1b048a129f7
+    no_hoist: true
+    folder: binary
+
+build:
+  skip: True  # [not (linux and aarch64)]
+  number: {{ build_number }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+
+requirements:
+  host:
+  run:
+    - sysroot_linux-aarch64 2.34.*
+    - kmod-libs-el9-aarch64 ==28 *_{{ build_number }}
+    - libxcrypt-devel-el9-aarch64 >=4.4.18 *_{{ build_number }}
+
+test:
+  requires:
+    - pkg-config
+  commands:
+    - test -f ${PREFIX}/aarch64-conda_el9-linux-gnu/sysroot/usr/include/libkmod.h
+    - test -f ${PREFIX}/aarch64-conda_el9-linux-gnu/sysroot/usr/lib64/libkmod.so
+    - export PKG_CONFIG_PATH=${PREFIX}/aarch64-conda_el9-linux-gnu/sysroot/usr/lib64/pkgconfig
+    - pkg-config --cflags libkmod
+
+about:
+  home: https://git.kernel.org/pub/scm/utils/kernel/kmod/kmod.git
+  license: LGPL-2.1-only  # GPLv2+
+  license_family: GPL2
+  license_file:
+    - COPYING
+  summary: (CDT) Header files for kmod development
+  description: |
+    The kmod-devel package provides header files used for development of
+    applications that wish to load or unload Linux kernel modules.
+  doc_url: https://git.kernel.org/pub/scm/utils/kernel/kmod/kmod.git
+  dev_url: https://git.kernel.org/pub/scm/utils/kernel/kmod/kmod.git
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

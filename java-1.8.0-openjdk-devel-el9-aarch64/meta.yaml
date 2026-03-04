@@ -1,0 +1,48 @@
+package:
+  name: java-1.8.0-openjdk-devel-el9-aarch64
+  version: 1.8.0.452b9
+
+source:
+  - url: https://download.rockylinux.org/vault/rocky/9.5/AppStream/aarch64/os/Packages/j/java-1.8.0-openjdk-devel-1.8.0.452.b09-2.el9.aarch64.rpm
+    sha256: 4efeb75f9699b3bfae6d29b659b7a058104905037140cb4454d9f33339d1a024
+    no_hoist: true
+    folder: binary
+
+build:
+  skip: True  # [not (linux and aarch64)]
+  number: {{ build_number }}
+  noarch: generic
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - sysroot_linux-aarch64 2.34.*
+  host:
+  run:
+    - sysroot_linux-aarch64 2.34.*
+    - java-1.8.0-openjdk-el9-aarch64 ==1.8.0.452b9 *_{{ build_number }}
+
+test:
+  commands:
+    - test -f ${PREFIX}/aarch64-conda_el9-linux-gnu/sysroot/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.452.b09-2.el9.aarch64/lib/tools.jar
+    - test -f ${PREFIX}/aarch64-conda_el9-linux-gnu/sysroot/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.452.b09-2.el9.aarch64/tapset/hotspot-1.8.0.452.b09-2.el9.aarch64.stp
+
+# The nominal license is https://github.com/openjdk/jdk/blob/master/LICENSE
+about:
+  home: http://openjdk.java.net/
+  license: ASL 1.1 and ASL 2.0 and BSD and BSD with advertising and GPL+ and GPLv2 and GPLv2 with exceptions and IJG and LGPLv2+ and MIT and MPLv2.0 and Public Domain and W3C and zlib
+  license_family: Other
+  license_file:
+    - ASSEMBLY_EXCEPTION
+    - LICENSE
+    - THIRD_PARTY_README
+  summary: (CDT) OpenJDK 8 Development Environment
+  description: |
+    The OpenJDK 8 development tools.
+  doc_url: http://openjdk.java.net/
+  dev_url: http://openjdk.java.net/
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

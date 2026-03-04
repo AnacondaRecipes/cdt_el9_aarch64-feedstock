@@ -1,0 +1,29 @@
+package:
+  name: javapackages-filesystem-el9-aarch64
+  version: 6.0.0
+
+source:
+  - url: https://download.rockylinux.org/vault/rocky/9.5/AppStream/aarch64/os/Packages/j/javapackages-filesystem-6.0.0-7.el9_5.noarch.rpm
+    sha256: a888ded88c325405d7bb3edeef9e1da54543f018eeb815c1505ec156310def9a
+    no_hoist: true
+    folder: binary
+
+build:
+  skip: True  # [not (linux and aarch64)]
+  number: {{ build_number }}
+  noarch: generic
+
+about:
+  home: https://github.com/fedora-java/javapackages
+  license: BSD-3-Clause  # BSD
+  license_family: BSD
+  summary: (CDT) Java packages filesystem layout
+  description: |
+    This package provides some basic directories into which Java packages
+    install their content.
+  doc_url: https://github.com/fedora-java/javapackages
+  dev_url: https://github.com/fedora-java/javapackages
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts
