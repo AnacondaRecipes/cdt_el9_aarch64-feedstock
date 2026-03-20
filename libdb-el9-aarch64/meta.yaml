@@ -1,0 +1,54 @@
+package:
+  name: libdb-el9-aarch64
+  version: 5.3.28
+
+source:
+  - url: https://download.rockylinux.org/vault/rocky/9.5/BaseOS/aarch64/os/Packages/l/libdb-5.3.28-54.el9.aarch64.rpm
+    sha256: 266bb43149e67399cbcf8247787c1b784a50c420cc57a7b4173a5793b7eefb4b
+    no_hoist: true
+    folder: binary
+
+build:
+  skip: True  # [not (linux and aarch64)]
+  number: {{ build_number }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - sysroot_linux-aarch64 2.34.*
+  host:
+  run:
+    - sysroot_linux-aarch64 2.34.*
+
+test:
+  commands:
+    - test -f ${PREFIX}/aarch64-conda_el9-linux-gnu/sysroot/usr/lib64/libdb-5.so
+    - test -f ${PREFIX}/aarch64-conda_el9-linux-gnu/sysroot/usr/lib64/libdb-5.3.so
+
+about:
+  home: http://www.oracle.com/database/berkeley-db/
+  license: MIT  # BSD and LGPLv2 and Sleepycat and MIT
+  license_family: MIT
+  license_file:
+    - LICENSE
+    - lgpl-2.1.txt
+  summary: (CDT) The Berkeley DB database library for C
+  description: |
+    The Berkeley Database (Berkeley DB) is a programmatic toolkit that
+    provides embedded database support for both traditional and
+    client/server applications. The Berkeley DB includes B+tree, Extended
+    Linear Hashing, Fixed and Variable-length record access methods,
+    transactions, locking, logging, shared memory caching, and database
+    recovery. The Berkeley DB supports C, C++, and Perl APIs. It is
+    used by many applications, including Python and Perl, so this should
+    be installed on all systems.
+  doc_url: http://www.oracle.com/database/berkeley-db/
+  dev_url: http://www.oracle.com/database/berkeley-db/
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

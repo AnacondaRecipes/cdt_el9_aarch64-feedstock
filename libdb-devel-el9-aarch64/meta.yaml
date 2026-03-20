@@ -1,0 +1,45 @@
+package:
+  name: libdb-devel-el9-aarch64
+  version: 5.3.28
+
+source:
+  - url: https://download.rockylinux.org/vault/rocky/9.5/AppStream/aarch64/os/Packages/l/libdb-devel-5.3.28-54.el9.aarch64.rpm
+    sha256: 6baf3a1def505301c4be13eba80fbea3174be77827e86c99e3fb838ea13e94a5
+    no_hoist: true
+    folder: binary
+
+build:
+  skip: True  # [not (linux and aarch64)]
+  number: {{ build_number }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+
+requirements:
+  host:
+  run:
+    - libdb-el9-aarch64 ==5.3.28 *_{{ build_number }}
+
+test:
+  commands:
+    - test -f ${PREFIX}/aarch64-conda_el9-linux-gnu/sysroot/usr/lib64/libdb.so
+
+about:
+  home: http://www.oracle.com/database/berkeley-db/
+  license: MIT  # BSD and LGPLv2 and Sleepycat and MIT
+  license_family: MIT
+  license_file:
+    - LICENSE
+  summary: (CDT) C development files for the Berkeley DB library
+  description: |
+    The Berkeley Database (Berkeley DB) is a programmatic toolkit that
+    provides embedded database support for both traditional and
+    client/server applications. This package contains the header files,
+    libraries, and documentation for building programs which use the
+    Berkeley DB.
+  doc_url: http://www.oracle.com/database/berkeley-db/
+  dev_url: http://www.oracle.com/database/berkeley-db/
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts
