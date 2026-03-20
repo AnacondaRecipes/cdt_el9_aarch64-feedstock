@@ -20,6 +20,7 @@ requirements:
   run:
     - sysroot_linux-aarch64 2.34.*
     - libpwquality-el9-aarch64 ==1.4.4 *_{{ build_number }}
+    - pkgconfig
 
 test:
   requires:

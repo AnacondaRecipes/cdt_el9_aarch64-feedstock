@@ -18,8 +18,8 @@ build:
 requirements:
   host:
   run:
-    - sysroot_linux-aarch64 2.34.*
     - libtirpc-el9-aarch64 ==1.3.3 *_{{ build_number }}
+    - pkgconfig
 
 test:
   requires:

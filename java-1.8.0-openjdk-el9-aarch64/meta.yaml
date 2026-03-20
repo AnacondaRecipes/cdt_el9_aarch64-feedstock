@@ -30,7 +30,6 @@ requirements:
     - sysroot_linux-aarch64 2.34.*
     - alsa-lib
     - ca-certificates
-    - copy-jdk-configs-el9-aarch64 >=4.0 *_{{ build_number }}
     - fontconfig
     - java-1.8.0-openjdk-headless-el9-aarch64 ==1.8.0.452b9 *_{{ build_number }}
     - xorg-libxcomposite

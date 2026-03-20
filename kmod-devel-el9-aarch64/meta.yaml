@@ -18,7 +18,6 @@ build:
 requirements:
   host:
   run:
-    - sysroot_linux-aarch64 2.34.*
     - kmod-libs-el9-aarch64 ==28 *_{{ build_number }}
 
 test:
