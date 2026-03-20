@@ -20,7 +20,6 @@ requirements:
   run:
     - sysroot_linux-aarch64 2.34.*
     - kmod-libs-el9-aarch64 ==28 *_{{ build_number }}
-    - libxcrypt-devel-el9-aarch64 >=4.4.18 *_{{ build_number }}
 
 test:
   requires:
