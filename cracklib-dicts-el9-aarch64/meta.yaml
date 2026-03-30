@@ -18,7 +18,6 @@ build:
 requirements:
   host:
   run:
-    - sysroot_linux-aarch64 2.34.*
     - cracklib-el9-aarch64 ==2.9.6 *_{{ build_number }}
 
 test:
