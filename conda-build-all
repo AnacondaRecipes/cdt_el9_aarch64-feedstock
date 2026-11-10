@@ -34,6 +34,7 @@ ordered_cdts=(
 
     copy-jdk-configs
     javapackages-filesystem
+    java-1.8.0-openjdk-headless
     java-1.8.0-openjdk
     java-1.8.0-openjdk-devel
 
@@ -54,6 +55,9 @@ ordered_cdts=(
 
     libtirpc
     libtirpc-devel
+
+    libdb
+    libdb-devel
 
     pam
     pam-devel

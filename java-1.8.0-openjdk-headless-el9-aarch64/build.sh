@@ -26,6 +26,11 @@ for sl in $(find . -type l) ; do
 	;;
     esac
 done
+
+# Before we leave the unpacked tarball, remove the copy of the upstream
+# Java cacerts, cacerts.upstream, which contains eMudhra certs
+find . -type f -name cacerts.upstream | xargs rm
+
 popd
 
 pushd ${PREFIX}/aarch64-conda_el9-linux-gnu/sysroot > /dev/null 2>&1
